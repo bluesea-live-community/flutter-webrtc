@@ -31,7 +31,6 @@ import org.webrtc.PeerConnection;
 import org.webrtc.RTCStats;
 import org.webrtc.RTCStatsCollectorCallback;
 import org.webrtc.RTCStatsReport;
-import org.webrtc.RtpCapabilities;
 import org.webrtc.RtpParameters;
 import org.webrtc.RtpReceiver;
 import org.webrtc.RtpSender;
@@ -263,9 +262,9 @@ class PeerConnectionObserver implements PeerConnection.Observer, EventChannel.St
           }
       }
       if (sender != null) {
-          peerConnection.getStats(rtcStatsReport -> handleStatsReport(rtcStatsReport, result), sender);
+          // peerConnection.getStats(rtcStatsReport -> handleStatsReport(rtcStatsReport, result), sender);
       } else if(receiver != null) {
-          peerConnection.getStats(rtcStatsReport -> handleStatsReport(rtcStatsReport, result), receiver);
+          // peerConnection.getStats(rtcStatsReport -> handleStatsReport(rtcStatsReport, result), receiver);
       } else {
           resultError("peerConnectionGetStats","MediaStreamTrack not found for id: " + trackId, result);
       }
@@ -1009,7 +1008,7 @@ private RtpParameters updateRtpParameters(RtpParameters parameters, Map<String, 
           resultError("rtpTransceiverSetCodecPreferences", "transceiver is null", result);
           return;
       }
-      List<RtpCapabilities.CodecCapability> preferedCodecs = new ArrayList<>();
+      /*List<RtpCapabilities.CodecCapability> preferedCodecs = new ArrayList<>();
       for(Map<String, Object> codec : codecs) {
             RtpCapabilities.CodecCapability codecCapability = new RtpCapabilities.CodecCapability();
             String mimeType = (String) codec.get("mimeType");
@@ -1037,7 +1036,7 @@ private RtpParameters updateRtpParameters(RtpParameters parameters, Map<String, 
             }
             preferedCodecs.add(codecCapability);
       }
-      transceiver.setCodecPreferences(preferedCodecs);
+      transceiver.setCodecPreferences(preferedCodecs);*/
       result.success(null);
   }
 

@@ -58,7 +58,6 @@ import org.webrtc.PeerConnection.TcpCandidatePolicy;
 import org.webrtc.PeerConnectionFactory;
 import org.webrtc.PeerConnectionFactory.InitializationOptions;
 import org.webrtc.PeerConnectionFactory.Options;
-import org.webrtc.RtpCapabilities;
 import org.webrtc.RtpSender;
 import org.webrtc.SdpObserver;
 import org.webrtc.SessionDescription;
@@ -702,8 +701,8 @@ public class MethodCallHandlerImpl implements MethodCallHandler, StateProvider {
         if (kind.equals("video")) {
           mediaType = MediaStreamTrack.MediaType.MEDIA_TYPE_VIDEO;
         }
-        RtpCapabilities capabilities = mFactory.getRtpSenderCapabilities(mediaType);
-        result.success(capabilitiestoMap(capabilities).toMap());
+        //RtpCapabilities capabilities = mFactory.getRtpSenderCapabilities(mediaType);
+        //result.success(capabilitiestoMap(capabilities).toMap());
         break;
       }
       case "getRtpReceiverCapabilities": {
@@ -712,8 +711,8 @@ public class MethodCallHandlerImpl implements MethodCallHandler, StateProvider {
         if (kind.equals("video")) {
           mediaType = MediaStreamTrack.MediaType.MEDIA_TYPE_VIDEO;
         }
-        RtpCapabilities capabilities = mFactory.getRtpReceiverCapabilities(mediaType);
-        result.success(capabilitiestoMap(capabilities).toMap());
+        //RtpCapabilities capabilities = mFactory.getRtpReceiverCapabilities(mediaType);
+        //result.success(capabilitiestoMap(capabilities).toMap());
         break;
       }
       case "setCodecPreferences":
@@ -728,7 +727,7 @@ public class MethodCallHandlerImpl implements MethodCallHandler, StateProvider {
     }
   }
 
-  private ConstraintsMap capabilitiestoMap(RtpCapabilities capabilities) {
+  /*private ConstraintsMap capabilitiestoMap(RtpCapabilities capabilities) {
     ConstraintsMap capabilitiesMap = new ConstraintsMap();
     ConstraintsArray codecArr = new ConstraintsArray();
     for(RtpCapabilities.CodecCapability codec : capabilities.codecs){
@@ -762,7 +761,7 @@ public class MethodCallHandlerImpl implements MethodCallHandler, StateProvider {
     ConstraintsArray fecMechanismsArr = new ConstraintsArray();
     capabilitiesMap.putArray("fecMechanisms", fecMechanismsArr.toArrayList());
     return capabilitiesMap;
-  }
+  }*/
 
   private PeerConnection getPeerConnection(String id) {
     PeerConnectionObserver pco = mPeerConnectionObservers.get(id);
